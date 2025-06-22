@@ -1,0 +1,34 @@
+require('dotenv').config()
+const express = require('express')
+const mongoose = require('mongoose')
+const cors = require('cors')
+const entryRouter = require('./routes/entryRoute')
+
+
+const app = express()
+const PORT = process.env.PORT || 3000
+
+mongoose.connect(process.env.MONGO_URL)
+.then(()=>{
+    console.log("Database Connected")
+}).catch((err)=>{
+    console.log(err)
+})
+
+app.use(express.json())
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: false 
+}));
+
+app.get('/',(req,res)=>{
+    res.send("Home page")
+})
+app.use('/api/data',entryRouter)
+
+
+
+app.listen(PORT,()=>{
+    console.log(`server running on http://localhost:${PORT}`)
+})
+
