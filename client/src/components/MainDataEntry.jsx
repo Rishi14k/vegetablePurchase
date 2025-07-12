@@ -129,7 +129,7 @@ const MainDataEntry = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/data/entries", {
+      const res = await fetch("https://vegetablepurchase.onrender.com/api/data/entries", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(entries),
@@ -149,7 +149,7 @@ const MainDataEntry = () => {
   const downloadExcel = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/data/download");
+      const res = await fetch("https://vegetablepurchase.onrender.com/api/data/download");
       if (!res.ok) throw new Error("Failed to download file");
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
