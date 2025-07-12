@@ -3,7 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const entryRouter = require('./routes/entryRoute')
-
+const groceryRouter = require('./routes/groceryRoute')
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -25,6 +25,7 @@ app.get('/',(req,res)=>{
     res.send("Home page")
 })
 app.use('/api/data',entryRouter)
+app.use('/api/data',groceryRouter)
 
 
 
